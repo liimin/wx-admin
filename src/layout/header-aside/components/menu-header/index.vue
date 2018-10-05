@@ -39,7 +39,7 @@ export default {
       'header'
     ])
   },
-  data () {
+  data() {
     return {
       active: '',
       isScroll: false,
@@ -51,14 +51,14 @@ export default {
   },
   watch: {
     '$route.matched': {
-      handler (val) {
+      handler(val) {
         this.active = val[val.length - 1].path
       },
       immediate: true
     }
   },
   methods: {
-    scroll (direction) {
+    scroll(direction) {
       if (direction === 'left') {
         // 向右滚动
         this.currentTranslateX = 0
@@ -71,7 +71,7 @@ export default {
         }
       }
     },
-    checkScroll () {
+    checkScroll() {
       let contentWidth = this.$refs.content.clientWidth
       let scrollWidth = this.$refs.scroll.clientWidth
       if (this.isScroll) {
@@ -106,7 +106,7 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     // 初始化判断
     // 默认判断父元素和子元素的大小，以确定初始情况是否显示滚动
     this.checkScroll()
@@ -114,7 +114,7 @@ export default {
     this.throttledCheckScroll = throttle(this.checkScroll, 300)
     window.addEventListener('resize', this.throttledCheckScroll)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     // 取消监听
     window.removeEventListener('resize', this.throttledCheckScroll)
   }

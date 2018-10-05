@@ -13,7 +13,7 @@ export default {
      * @param {Object} state vuex state
      * @param {*} info info
      */
-    set ({ state, dispatch }, info) {
+    set({ state, dispatch }, info) {
       return new Promise(async resolve => {
         // store 赋值
         state.info = info
@@ -32,7 +32,7 @@ export default {
      * @description 从数据库取用户数据
      * @param {Object} state vuex state
      */
-    load ({ state, dispatch }) {
+    load({ state, dispatch }) {
       return new Promise(async resolve => {
         // store 赋值
         state.info = await dispatch('d2admin/db/get', {

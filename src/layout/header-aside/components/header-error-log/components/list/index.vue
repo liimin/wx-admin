@@ -139,7 +139,7 @@ export default {
     ...mapState('d2admin', {
       logList: state => state.log.list
     }),
-    logReverse () {
+    logReverse() {
       // 直接 reverse 的话有点问题
       const res = []
       const loglength = this.logList.length
@@ -151,10 +151,10 @@ export default {
   },
   methods: {
     get,
-    filterType (value, row) {
+    filterType(value, row) {
       return row.type === value
     },
-    stackBeautify (err) {
+    stackBeautify(err) {
       if (!err) {
         return ''
       }

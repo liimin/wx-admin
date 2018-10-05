@@ -46,7 +46,7 @@ export default {
   components: {
     D2ErrorLogList
   },
-  data () {
+  data() {
     return {
       dialogVisible: false
     }
@@ -56,7 +56,7 @@ export default {
       logLength: 'log/length',
       logLengthError: 'log/lengthError'
     }),
-    tooltipContent () {
+    tooltipContent() {
       return this.logLength === 0
         ? '没有日志或异常'
         : `${this.logLength} 条日志${this.logLengthError > 0
@@ -68,12 +68,12 @@ export default {
     ...mapMutations('d2admin/log', [
       'clean'
     ]),
-    handleClick () {
+    handleClick() {
       if (this.logLength > 0) {
         this.dialogVisible = true
       }
     },
-    handleLogClean () {
+    handleLogClean() {
       this.dialogVisible = false
       this.clean()
     }

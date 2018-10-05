@@ -18,10 +18,10 @@ export default {
      * @description 检查版本更新
      * @param {Object} param context
      */
-    checkUpdate ({ state, commit }) {
+    checkUpdate({ state, commit }) {
       httpGet(setting.releases.api)
         .then(res => {
-          let versionGet = res.tag_name
+          const versionGet = res.tag_name
           const update = semver.lt(state.version, versionGet)
           if (update) {
             util.log.capsule('D2Admin', `New version ${res.name}`)
@@ -40,7 +40,7 @@ export default {
      * @description 显示版本信息
      * @param {Object} state vuex state
      */
-    versionShow (state) {
+    versionShow(state) {
       util.log.capsule('D2Admin', `v${state.version}`)
       console.log('Github https://github.com/d2-projects/d2-admin')
       console.log('Doc    https://d2-projects.github.io/d2-admin-doc/zh/')
@@ -50,7 +50,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Boolean} update can update
      */
-    updateSet (state, update) {
+    updateSet(state, update) {
       // store 赋值
       state.update = update
     },
@@ -59,7 +59,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Object}} latest releases value
      */
-    latestSet (state, latest) {
+    latestSet(state, latest) {
       // store 赋值
       state.latest = latest
     }

@@ -99,7 +99,7 @@ export default {
     'd2-header-user': () => import('./components/header-user'),
     'd2-header-error-log': () => import('./components/header-error-log')
   },
-  data () {
+  data() {
     return {
       // [侧边栏宽度] 正常状态
       asideWidth: '200px',
@@ -120,7 +120,7 @@ export default {
     /**
      * @description 最外层容器的背景图片样式
      */
-    styleLayoutMainGroup () {
+    styleLayoutMainGroup() {
       return {
         ...this.themeActiveSetting.backgroundImage ? {
           backgroundImage: `url('${this.$baseUrl}${this.themeActiveSetting.backgroundImage}')`
@@ -135,7 +135,7 @@ export default {
     /**
      * 接收点击切换侧边栏的按钮
      */
-    handleToggleAside () {
+    handleToggleAside() {
       this.asideCollapseToggle()
     }
   }

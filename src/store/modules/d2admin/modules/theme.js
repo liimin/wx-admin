@@ -14,7 +14,7 @@ export default {
      * @description 返回当前的主题信息 不是一个名字 而是当前激活主题的所有数据
      * @param {Object} state vuex state
      */
-    activeSetting (state) {
+    activeSetting(state) {
       return state.list.find(theme => theme.name === state.activeName)
     }
   },
@@ -24,7 +24,7 @@ export default {
      * @param {Object} state vuex state
      * @param {String} themeValue 需要激活的主题名称
      */
-    set ({ state, commit, dispatch }, themeName) {
+    set({ state, commit, dispatch }, themeName) {
       return new Promise(async resolve => {
         // 检查这个主题在主题列表里是否存在
         state.activeName = state.list.find(e => e.name === themeName) ? themeName : state.list[0].name
@@ -45,7 +45,7 @@ export default {
      * @description 从持久化数据加载主题设置
      * @param {Object} state vuex state
      */
-    load ({ state, commit, dispatch }) {
+    load({ state, commit, dispatch }) {
       return new Promise(async resolve => {
         // store 赋值
         state.activeName = await dispatch('d2admin/db/get', {
@@ -66,7 +66,7 @@ export default {
      * @description 将 vuex 中的主题应用到 dom
      * @param {Object} state vuex state
      */
-    dom (state) {
+    dom(state) {
       document.body.className = `theme-${state.activeName}`
     }
   }

@@ -10,7 +10,7 @@ export default {
     /**
      * @description 初始化监听
      */
-    listen ({ commit }) {
+    listen({ commit }) {
       return new Promise(resolve => {
         if (screenfull.enabled) {
           screenfull.on('change', () => {
@@ -27,7 +27,7 @@ export default {
     /**
      * @description 切换全屏
      */
-    toggle ({ commit }) {
+    toggle({ commit }) {
       return new Promise(resolve => {
         if (screenfull.isFullscreen) {
           screenfull.exit()
@@ -47,7 +47,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Boolean} active active
      */
-    set (state, active) {
+    set(state, active) {
       state.active = active
     }
   }

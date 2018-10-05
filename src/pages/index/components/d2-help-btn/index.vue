@@ -46,7 +46,7 @@
 <script>
 export default {
   name: 'd2-page-cover',
-  data () {
+  data() {
     return {
       dialogVisible: false
     }

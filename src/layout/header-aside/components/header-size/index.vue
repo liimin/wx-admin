@@ -33,7 +33,7 @@ export default {
     // 注意 这里是关键
     // 因为需要访问 this.$ELEMENT 所以只能在这里使用这种方式
     value: {
-      handler (val) {
+      handler(val) {
         if (this.$ELEMENT.size !== val) {
           // 设置 element 全局尺寸
           this.$ELEMENT.size = val
@@ -56,10 +56,10 @@ export default {
     ...mapActions({
       sizeSet: 'd2admin/size/set'
     }),
-    handleChange (value) {
+    handleChange(value) {
       this.sizeSet(value)
     },
-    iconName (name) {
+    iconName(name) {
       return name === this.value ? 'dot-circle-o' : 'circle-o'
     }
   }

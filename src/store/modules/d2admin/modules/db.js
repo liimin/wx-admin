@@ -10,7 +10,7 @@ import util from '@/libs/util.js'
  * @param {Object} param defaultValue {*} 初始化默认值
  * @returns {String} 可以直接使用的路径
  */
-function pathInit ({
+function pathInit({
   dbName = 'database',
   path = '',
   user = true,
@@ -39,7 +39,7 @@ export default {
      * @param {Object} param value {*} 需要存储的值
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    set (context, {
+    set(context, {
       dbName = 'database',
       path = '',
       value = '',
@@ -59,7 +59,7 @@ export default {
      * @param {Object} param defaultValue {*} 取值失败的默认值
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    get (context, {
+    get(context, {
       dbName = 'database',
       path = '',
       defaultValue = '',
@@ -79,7 +79,7 @@ export default {
      * @param {Object} context context
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    database (context, {
+    database(context, {
       user = false
     } = {}) {
       return new Promise(resolve => {
@@ -96,7 +96,7 @@ export default {
      * @param {Object} context context
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    databaseClear (context, {
+    databaseClear(context, {
       user = false
     } = {}) {
       return new Promise(resolve => {
@@ -116,7 +116,7 @@ export default {
      * @param {Object} param basis {String} 页面区分依据 [ name | path | fullPath ]
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    databasePage (context, {
+    databasePage(context, {
       vm,
       basis = 'name',
       user = false
@@ -137,7 +137,7 @@ export default {
      * @param {Object} param basis {String} 页面区分依据 [ name | path | fullPath ]
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    databasePageClear (context, {
+    databasePageClear(context, {
       vm,
       basis = 'name',
       user = false
@@ -159,7 +159,7 @@ export default {
      * @param {Object} param basis {String} 页面区分依据 [ name | path | fullPath ]
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    pageSet (context, {
+    pageSet(context, {
       vm,
       basis = 'name',
       user = false
@@ -181,7 +181,7 @@ export default {
      * @param {Object} param basis {String} 页面区分依据 [ name | path | fullPath ]
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    pageGet (context, {
+    pageGet(context, {
       vm,
       basis = 'name',
       user = false
@@ -202,7 +202,7 @@ export default {
      * @param {Object} param basis {String} 页面区分依据 [ name | path | fullPath ]
      * @param {Object} param user {Boolean} 是否区分用户
      */
-    pageClear (context, {
+    pageClear(context, {
       vm,
       basis = 'name',
       user = false

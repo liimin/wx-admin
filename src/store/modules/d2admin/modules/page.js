@@ -21,7 +21,7 @@ export default {
      * @description 从持久化数据载入分页列表
      * @param {Object} state vuex state
      */
-    openedLoad ({ state, commit, dispatch }) {
+    openedLoad({ state, commit, dispatch }) {
       return new Promise(async resolve => {
         // store 赋值
         const value = await dispatch('d2admin/db/get', {
@@ -60,7 +60,7 @@ export default {
      * 将 opened 属性赋值并持久化 在这之前请先确保已经更新了 state.opened
      * @param {Object} state vuex state
      */
-    opend2db ({ state, dispatch }) {
+    opend2db({ state, dispatch }) {
       return new Promise(async resolve => {
         // 设置数据
         dispatch('d2admin/db/set', {
@@ -79,10 +79,10 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param { index, params, query } 路由信息
      */
-    openedUpdate ({ state, commit, dispatch }, { index, params, query }) {
+    openedUpdate({ state, commit, dispatch }, { index, params, query }) {
       return new Promise(async resolve => {
         // 更新页面列表某一项
-        let page = state.opened[index]
+        const page = state.opened[index]
         page.params = params || page.params
         page.query = query || page.query
         state.opened.splice(index, 1, page)
@@ -100,10 +100,10 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param new tag info
      */
-    add ({ state, commit, dispatch }, { tag, params, query }) {
+    add({ state, commit, dispatch }, { tag, params, query }) {
       return new Promise(async resolve => {
         // 设置新的 tag 在新打开一个以前没打开过的页面时使用
-        let newTag = tag
+        const newTag = tag
         newTag.params = params || newTag.params
         newTag.query = query || newTag.query
         // 添加进当前显示的页面数组
@@ -124,10 +124,10 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param { name, params, query } 路由信息
      */
-    open ({ state, commit, dispatch }, { name, params, query }) {
+    open({ state, commit, dispatch }, { name, params, query }) {
       return new Promise(async resolve => {
         // 已经打开的页面
-        let opened = state.opened
+        const opened = state.opened
         // 判断此页面是否已经打开 并且记录位置
         let pageOpendIndex = 0
         const pageOpend = opened.find((page, index) => {
@@ -144,7 +144,7 @@ export default {
           })
         } else {
           // 页面以前没有打开过
-          let page = state.pool.find(t => t.name === name)
+          const page = state.pool.find(t => t.name === name)
           if (page) {
             await dispatch('add', {
               tag: page,
@@ -164,7 +164,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param { tagName: 要关闭的标签名字, vm: vue }
      */
-    close ({ state, commit, dispatch }, { tagName, vm }) {
+    close({ state, commit, dispatch }, { tagName, vm }) {
       return new Promise(async resolve => {
         // 下个新的页面
         let newPage = state.opened[0]
@@ -172,7 +172,7 @@ export default {
         // 如果关闭的页面就是当前显示的页面
         if (isCurrent) {
           // 去找一个新的页面
-          let len = state.opened.length
+          const len = state.opened.length
           for (let i = 1; i < len; i++) {
             if (state.opened[i].name === tagName) {
               if (i < len - 1) {
@@ -196,8 +196,8 @@ export default {
         await dispatch('opend2db')
         // 最后需要判断是否需要跳到首页
         if (isCurrent) {
-          const { name = '', params = {}, query = {} } = newPage
-          let routerObj = {
+          const { name = '', params = {}, query = {}} = newPage
+          const routerObj = {
             name,
             params,
             query
@@ -214,7 +214,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param { pageSelect: 当前选中的tagName, vm: vue }
      */
-    closeLeft ({ state, commit, dispatch }, { pageSelect, vm } = {}) {
+    closeLeft({ state, commit, dispatch }, { pageSelect, vm } = {}) {
       return new Promise(async resolve => {
         const pageAim = pageSelect || state.current
         let currentIndex = 0
@@ -245,7 +245,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param { pageSelect: 当前选中的tagName, vm: vue }
      */
-    closeRight ({ state, commit, dispatch }, { pageSelect, vm } = {}) {
+    closeRight({ state, commit, dispatch }, { pageSelect, vm } = {}) {
       return new Promise(async resolve => {
         const pageAim = pageSelect || state.current
         let currentIndex = 0
@@ -275,7 +275,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} param { pageSelect: 当前选中的tagName, vm: vue }
      */
-    closeOther ({ state, commit, dispatch }, { pageSelect, vm } = {}) {
+    closeOther({ state, commit, dispatch }, { pageSelect, vm } = {}) {
       return new Promise(async resolve => {
         const pageAim = pageSelect || state.current
         let currentIndex = 0
@@ -310,7 +310,7 @@ export default {
      * @param {Object} state vuex state
      * @param {Object} vm vue
      */
-    closeAll ({ state, commit, dispatch }, vm) {
+    closeAll({ state, commit, dispatch }, vm) {
       return new Promise(async resolve => {
         // 删除打开的页面 并在缓存设置中删除
         state.opened.splice(1).forEach(({ name }) => commit('keepAliveRemove', name))
@@ -333,7 +333,7 @@ export default {
      * @description 从已经打开的页面记录中更新需要缓存的页面记录
      * @param {Object} state vuex state
      */
-    keepAliveRefresh (state) {
+    keepAliveRefresh(state) {
       state.keepAlive = state.opened.filter(item => {
         if (item.meta) {
           if (item.meta.notCache) {
@@ -348,8 +348,8 @@ export default {
      * @param {Object} state vuex state
      * @param {String} name name
      */
-    keepAliveRemove (state, name) {
-      const list = [ ...state.keepAlive ]
+    keepAliveRemove(state, name) {
+      const list = [...state.keepAlive]
       remove(list, item => item === name)
       state.keepAlive = list
     },
@@ -358,8 +358,8 @@ export default {
      * @param {Object} state vuex state
      * @param {String} name name
      */
-    keepAlivePush (state, name) {
-      const keep = [ ...state.keepAlive ]
+    keepAlivePush(state, name) {
+      const keep = [...state.keepAlive]
       keep.push(name)
       state.keepAlive = Array.from(new Set(keep))
     },
@@ -367,7 +367,7 @@ export default {
      * @description 清空页面缓存设置
      * @param {Object} state vuex state
      */
-    keepAliveClean (state) {
+    keepAliveClean(state) {
       state.keepAlive = []
     },
     /**
@@ -376,7 +376,7 @@ export default {
      * @param {Object} state vuex state
      * @param {String} name new name
      */
-    currentSet (state, name) {
+    currentSet(state, name) {
       state.current = name
     },
     /**
@@ -385,9 +385,9 @@ export default {
      * @param {Object} state vuex state
      * @param {Array} routes routes
      */
-    init (state, routes) {
+    init(state, routes) {
       const pool = []
-      const push = function (routes) {
+      const push = function(routes) {
         routes.forEach(route => {
           if (route.children) {
             push(route.children)

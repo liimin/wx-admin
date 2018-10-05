@@ -65,7 +65,7 @@ export default {
     D2Contextmenu: () => import('../contextmenu'),
     D2ContextmenuList: () => import('../contextmenu/components/contentmenuList')
   },
-  data () {
+  data() {
     return {
       contextmenuFlag: false,
       contentmenuX: 0,
@@ -99,7 +99,7 @@ export default {
     /**
      * @description 右键菜单功能点击
      */
-    handleContextmenu (event) {
+    handleContextmenu(event) {
       let target = event.target
       // 解决 https://github.com/d2-projects/d2-admin/issues/54
       let flag = false
@@ -120,13 +120,13 @@ export default {
     /**
      * @description 右键菜单的row-click事件
      */
-    contextmenuClick (command) {
+    contextmenuClick(command) {
       this.handleControlItemClick(command, this.tagName)
     },
     /**
      * @description 接收点击关闭控制上选项的事件
      */
-    handleControlItemClick (command, tagName = null) {
+    handleControlItemClick(command, tagName = null) {
       if (tagName) {
         this.contextmenuFlag = false
       }
@@ -155,13 +155,13 @@ export default {
     /**
      * @description 接收点击关闭控制上按钮的事件
      */
-    handleControlBtnClick () {
+    handleControlBtnClick() {
       this.closeAll(this)
     },
     /**
      * @description 接收点击 tab 标签的事件
      */
-    handleClick (tab, event) {
+    handleClick(tab, event) {
       // 找到点击的页面在 tag 列表里是哪个
       const page = this.opened.find(page => page.name === tab.name)
       const { name, params, query } = page
@@ -172,7 +172,7 @@ export default {
     /**
      * @description 点击 tab 上的删除按钮触发这里 首页的删除按钮已经隐藏 因此这里不用判断是 index
      */
-    handleTabsEdit (tagName, action) {
+    handleTabsEdit(tagName, action) {
       if (action === 'remove') {
         this.close({
           tagName,

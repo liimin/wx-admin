@@ -7,19 +7,19 @@ export default {
       default: () => ({})
     }
   },
-  data () {
+  data() {
     return {
       BS: null
     }
   },
-  mounted () {
+  mounted() {
     this.scrollInit()
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.scrollDestroy()
   },
   methods: {
-    scrollInit () {
+    scrollInit() {
       this.BS = new BScroll(this.$refs.wrapper, Object.assign({
         mouseWheel: true,
         scrollbar: {
@@ -28,7 +28,7 @@ export default {
         }
       }, this.betterScrollOptions))
     },
-    scrollDestroy () {
+    scrollDestroy() {
       // https://github.com/d2-projects/d2-admin/issues/75
       try {
         this.BS.destroy()

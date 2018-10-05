@@ -18,7 +18,7 @@ export default {
       default: () => {}
     }
   },
-  data () {
+  data() {
     return {
       uniqueId: uniqueId('d2-menu-empty-')
     }

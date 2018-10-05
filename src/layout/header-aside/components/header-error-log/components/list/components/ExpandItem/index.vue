@@ -22,7 +22,7 @@ export default {
     }
   },
   computed: {
-    className () {
+    className() {
       return this.type === 'log' ? 'd2-error-log-list__expand--log' : 'd2-error-log-list__expand--error'
     }
   }

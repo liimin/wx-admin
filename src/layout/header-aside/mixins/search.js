@@ -6,7 +6,7 @@ export default {
   components: {
     'd2-panel-search': () => import('../components/panel-search')
   },
-  mounted () {
+  mounted() {
     // 绑定搜索功能快捷键 [ 打开 ]
     hotkeys(this.searchHotkey.open, event => {
       event.preventDefault()
@@ -18,7 +18,7 @@ export default {
       this.searchPanelClose()
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     hotkeys.unbind(this.searchHotkey.open)
     hotkeys.unbind(this.searchHotkey.close)
   },
@@ -36,20 +36,20 @@ export default {
     /**
      * 接收点击搜索按钮
      */
-    handleSearchClick () {
+    handleSearchClick() {
       this.searchToggle()
       if (this.searchActive) {
         this.$refs.panelSearch.focus()
       }
     },
-    searchPanelOpen () {
+    searchPanelOpen() {
       if (!this.searchActive) {
         this.searchSet(true)
         this.$refs.panelSearch.focus()
       }
     },
     // 关闭搜索面板
-    searchPanelClose () {
+    searchPanelClose() {
       if (this.searchActive) {
         this.searchSet(false)
       }

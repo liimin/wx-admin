@@ -15,7 +15,7 @@ import pluginLog from '@/plugin/log'
 import pluginOpen from '@/plugin/open'
 
 export default {
-  async install (Vue, options) {
+  async install(Vue, options) {
     // 获得用户设置的全局尺寸
     const size = await store.dispatch('d2admin/db/get', {
       dbName: 'sys',
