@@ -7,12 +7,12 @@
       </el-form-item>
       <el-form-item label="寺观类型">
         <el-radio-group v-model="form.type">
-          <el-radio label="佛教" border size="medium"></el-radio>
-          <el-radio label="道教" border size="medium"></el-radio>
+          <el-radio label="1" border size="medium">佛教</el-radio>
+          <el-radio label="2" border size="medium">道教</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="地区">
-        <el-cascader :options="options" change-on-select size="medium"></el-cascader>
+        <el-cascader :options="options" change-on-select v-model="selectedOptions" size="medium"></el-cascader>
       </el-form-item>
       <el-form-item label="详细地址">
         <el-input v-model="form.addr"></el-input>
@@ -35,33 +35,39 @@
 <script>
 import E from 'wangeditor'
 import districts from '@/assets/districts'
+import { AddTemple } from '@/api/temples'
 export default {
   name: 'editor',
   data() {
     return {
-      editorContent: '',
       form: {
         name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        addr: '',
+        type: '1',
+        url: '',
+        desc: '',
+        province: '',
+        city: ''
       },
       options: [
       ],
-      selectedOptions: [],
-      selectedOptions2: []
+      selectedOptions: []
+    }
+  },
+  watch: {
+    selectedOptions: {
+      handler(val) {
+        this.form.province = val[0]
+        this.form.city = val[1] || ''
+      }
     }
   },
   methods: {
-    getContent() {
-      alert(this.editorContent)
-    },
     handleSubmit() {
-
+      AddTemple(this.form).then(res => {
+        console.log(res)
+      })
+      // console.log(this.form)
     },
     initDistricts() {
       const pro = districts[100000]
@@ -74,18 +80,18 @@ export default {
           for (const key2 in districts[key1]) {
             area.push({ label: districts[key1][key2], value: key2 })
           }
-          city.push({ label: districts[key][key1], value: key1, children: area })
+          city.push({ label: districts[key][key1], value: key1 })
+          // city.push({ label: districts[key][key1], value: key1, children: area })
         }
         list.push({ label: pro[key], value: key, children: city })
       }
       this.options = list
-      console.table(list)
     },
     initEditor() {
       var editor = new E(this.$refs.editor)
       editor.customConfig.uploadImgServer = '/upload'
       editor.customConfig.onchange = html => {
-        this.editorContent = html
+        this.form.desc = html
       }
       editor.create()
     }
